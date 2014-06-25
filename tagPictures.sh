@@ -8,6 +8,14 @@
 # Dependency:
 #     http://www.sno.phy.queensu.ca/~phil/exiftool/
 #
+# Exit codes:
+#     0
+#       Everything went well
+#     1
+#       Path to file given with option -t does not point
+#       to a regular file
+#     2 Path to picture directory given with option -d does
+#       not point to a regular directory 
 # Author:
 #     sdoerig@bluewin.ch
 # ------------------------------------------------------------------
@@ -56,7 +64,7 @@ function tagFile {
     local placeOfTaking=$7
     local format=$8
     local storage=$9
-    # Do not allow substring matches. Examle:
+    # Do not allow substring matches. Example:
     # diaNo is 23 and in the directory
     # the files 
     # - 23.tif
@@ -84,6 +92,15 @@ function tagFile {
 }
 
 function readCSV {
+    if [ ! -f $CSV ]
+    then
+	echo "FATAL: "$CSV" is not a regular file"
+	exit 1
+    elif [ ! -d $DIR ]
+    then
+	echo "FATAL: "$DIR" is not a directory"
+	exit 2
+    fi
     echo $CSV"-->"$DIR
     #Dia-Nr;Ortschaft;Kant.;Motiv;Region;Jahreszeit;Aufnahmeort;Format;Scaner;Find;Abl.;Reserve;;;;
     export IFS=\; 
@@ -105,7 +122,7 @@ function readCSV {
 	fi
 	tagFile $diaNo $place $canton $motiv $region $season $placeOfTaking $format $storage
     done < $CSV
-
+    exit 0
 }
 
 readCSV
