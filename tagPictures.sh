@@ -96,7 +96,7 @@ function tagFile {
     do 
 	if [ $f != "$DIR/$diaNo[^0-9]*" ]
 	then
-	    logInfo "Tagging file "$f 
+	  
 	    logInfo "Reserve ->"$res"---"
 	    echo "Tagging file "$f
 	    echo "Reserve ->"$res"---"
@@ -114,7 +114,7 @@ function tagFile {
 		-XMP:Subject=$format -iptc:keywords=$format \
 		-XMP:Subject=$storage -iptc:keywords=$storage \
 		$resTags $f
-	    logInfo "exiftool exit code: "$?
+	    logInfo "exiftool exit code: "$?" - "$f
 	fi
     done
     
