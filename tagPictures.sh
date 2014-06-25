@@ -2,7 +2,7 @@
 # ------------------------------------------------------------------
 # tagPictures
 # Description:
-#     Tags a bunch of pictures accoring to an CSV file
+#     Tags a bunch of pictures according to a CSV file
 #     provided by geo-fotos.ch 
 #          
 # Dependency:
