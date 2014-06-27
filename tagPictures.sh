@@ -105,7 +105,9 @@ function tagFile {
 	    then 
 		resTags="-XMP:Subject="$res" -iptc:keywords="$res
 	    fi
-	    exiftool -E -XMP:Subject=$place -iptc:keywords=$place \
+	    exiftool -E \
+		-XMP:Subject=$diaNo -iptc:keywords=$diaNo \
+		-XMP:Subject=$place -iptc:keywords=$place \
     		-XMP:Subject=$canton -iptc:keywords=$canton \
 		-XMP:Subject=$motiv -iptc:keywords=$motiv \
 		-XMP:Subject=$region -iptc:keywords=$region \
