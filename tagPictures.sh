@@ -26,6 +26,33 @@ declare CSV=''
 declare DIR='.'
 declare VERBOSE=0
 declare LOGFILE=""
+declare -A CANTONS=( \
+        ['ZH']='Zürich' \
+        ['BE']='Bern' \
+        ['LU']='Luzern' \
+        ['UR']='Uri' \
+        ['SZ']='Schwyz' \
+        ['OW']='Obwalden' \
+        ['NW']='Nidwalden' \
+        ['GL']='Glarus' \
+        ['ZG']='Zug' \
+        ['FR']='Freiburg' \
+        ['SO']='Solothurn' \
+        ['BS']='Basel-Stadt' \
+        ['BL']='Basel-Landschaft' \
+        ['SH']='Schaffhausen' \
+        ['AR']='Appenzell A. Rh.' \
+        ['AI']='Appenzell I. Rh.' \
+        ['SG']='St. Gallen' \
+        ['GR']='Graubünden' \
+        ['AG']='Aargau' \
+        ['TG']='Thurgau' \
+        ['TI']='Tessin' \
+        ['VD']='Waadt' \
+        ['VS']='Wallis' \
+        ['NE']='Neuenburg' \
+        ['GE']='Genf' \
+        ['JU']='Jura')
 
 
 # Getting the options where as
@@ -108,7 +135,7 @@ function tagFile {
 	    exiftool -E \
 		-XMP:Subject=$diaNo -iptc:keywords=$diaNo \
 		-XMP:Subject=$place -iptc:keywords=$place \
-    		-XMP:Subject=$canton -iptc:keywords=$canton \
+    		-XMP:Subject=${CANTONS[$canton]} -iptc:keywords=${CANTONS[$canton]} \
 		-XMP:Subject=$motiv -iptc:keywords=$motiv \
 		-XMP:Subject=$region -iptc:keywords=$region \
 		-XMP:Subject=$season -iptc:keywords=$season \
